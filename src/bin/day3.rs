@@ -13,7 +13,7 @@ fn make_map(s: &str) -> HashMap<Point, u32> {
     curr.push_back(Point::new(0, 0)); //robo
     let mut map = HashMap::new();
     for c in s.chars() {
-        let mut current = curr.front_mut().expect("Where is my Santa?!");
+        let current = curr.front_mut().expect("Where is my Santa?!");
         let p = Point::of(&current);
         let count = map.entry(p).or_insert(1);
         *count += 1;

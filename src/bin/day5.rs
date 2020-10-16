@@ -16,7 +16,7 @@ impl ElfString {
 }
 
 fn main() {
-    let patterns1 = vec!(
+    let _patterns1 = vec!(
         Regex::new(r"ab|cd|pq|xy").unwrap(),
         Regex::new(r"([[:alpha:]])\1").unwrap(),
         Regex::new(r"[aeiou].*[aeiou].*[aeiou]").unwrap(),
@@ -34,14 +34,14 @@ fn main() {
         "dvszwmarrgswjxmb", // is naughty because it contains only one vowel.
     ].iter()*/
     read_lines("puzzle-input/5.0.txt", |s| s)
-        //.map(|s| check_nice_1(&patterns1, &s))
+        //.map(|s| check_nice_1(&_patterns1, &s))
         .map(|s| check_nice_2(&patterns2, &s))
         .filter(|e| e.is_nice())
         .collect();
     println!("{}", result.len());
 }
 
-fn check_nice_1(patterns: &Vec<Regex>, s: &str) -> ElfString {
+fn _check_nice_1(patterns: &Vec<Regex>, s: &str) -> ElfString {
     if !patterns[0].is_match(s).unwrap() {
         if patterns[1].is_match(s).unwrap() && patterns[2].is_match(s).unwrap() {
             return ElfString::Nice;

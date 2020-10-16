@@ -18,11 +18,10 @@ fn first_basement(s: &str) {
                 break;
             }
         }
-        //println!("{}", floor);
     }
 }
 
 fn main() {
-    //parse_file("puzzle-input/1.0.txt", count);
+    parse_file("puzzle-input/1.0.txt", count);
     parse_file("puzzle-input/1.0.txt", first_basement);
 }

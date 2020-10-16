@@ -4,13 +4,14 @@ use std::collections::HashMap;
 
 fn main() {
     let pattern = Regex::new(r"(?:(?P<toggle>toggle)|turn (?:(?P<on>on)|(?P<off>off))) (?P<fx>\d+),(?P<fy>\d+) through (?P<tx>\d+),(?P<ty>\d+)").unwrap();
-    //let mut map: HashMap<CoOrd, bool> = HashMap::new();
-    let mut map: HashMap<CoOrd, i32> = HashMap::new();
+    let mut map1: HashMap<CoOrd, bool> = HashMap::new();
+    let mut map2: HashMap<CoOrd, i32> = HashMap::new();
     for ranged_op in read_lines("puzzle-input/6.0.txt", |s| s).map(|s| RangedOperation::new(&pattern, &s)) {
-        ranged_op.apply_2(&mut map);
+        ranged_op.apply_1(&mut map1);
+        ranged_op.apply_2(&mut map2);
     }
-    //1: println!("{}", map.values().filter(|b| **b).count());
-    println!("{}", map.values().sum::<i32>());
+    println!("{}", map1.values().filter(|b| **b).count());
+    println!("{}", map2.values().sum::<i32>());
     //println!("{:?}", CoOrdRange::new(2, 3, 5, 4).iter().collect::<Vec<_>>());
     /*println!("{:?}", RangedOperation::new(&pattern, "turn on 0,0 through 999,999"));
     println!("{:?}", RangedOperation::new(&pattern, "toggle 0,0 through 999,0"));

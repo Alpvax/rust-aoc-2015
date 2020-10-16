@@ -30,11 +30,11 @@ fn parse_signal(s: Option<Match>, map: &Map) -> Operand {
     }
 }
 
-fn eval_wire(s: &str, map: &mut Map) -> u16 {
+fn eval_wire(s: &str, map: &Map) -> u16 {
     let op = map.get(s).expect("Wire not present in map");
     match op {
-        Operation::Value(i) => *i,
-        Operation::EQ(w) => eval_wire(w, map),
+        //Operation::Value(i) => *i,
+        //Operation::EQ(w) => eval_wire(w, map),
 
         Operation::NOT(o) => !o.get(map),
         Operation::AND(a, b) => a.get(map) & b.get(map),
@@ -43,7 +43,7 @@ fn eval_wire(s: &str, map: &mut Map) -> u16 {
         Operation::RSHIFT(a, b) => a.get(map) >> b.get(map),
         _ => {
             let val = op.eval(map);
-            map.insert(s.to_string(), Operation::Value(val));
+            //FIXME: map.insert(s.to_string(), Operation::Value(val));
             val
         }
     }
@@ -56,7 +56,7 @@ enum Operand {
 }
 
 impl Operand {
-    fn get(&self, map: &mut Map) -> u16 {
+    fn get(&self, map: &Map) -> u16 {
         match self {
             Self::Value(i) => *i,
             Self::Wire(s) => {
@@ -96,7 +96,7 @@ impl Operation {
             }
         }
     }
-    fn eval(&self, map: &mut Map) -> u16 {
+    fn eval(&self, map: &Map) -> u16 {
         match self {
             Self::NOT(o) => !o.get(map),
             Self::AND(a, b) => a.get(map) & b.get(map),
