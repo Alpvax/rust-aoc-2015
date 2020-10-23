@@ -13,7 +13,7 @@ fn main() {
         let next = map.get(first).unwrap().state.unwrap();
     }*/
     let mut max_score = 0;
-    for seconds in 0..2503 {
+    for _seconds in 0..2503 {
         first = map.values_mut().map(|r| r.tick(1)).max_by_key(|r| r.distance).unwrap().name.to_string();
         let f = map.get_mut(&first).unwrap();
         f.score += 1;
@@ -87,7 +87,7 @@ impl Reindeer {
         let mut remaining = seconds;
         while remaining > 0 {
             let time = self.state.unwrap();
-            if let State::Fly(i) = self.state {
+            if let State::Fly(_i) = self.state {
                 self.distance += std::cmp::min(time, remaining) * self.speed;
             }
             if remaining >= time {
