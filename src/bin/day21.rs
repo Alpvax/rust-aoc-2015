@@ -17,7 +17,7 @@ fn main() {
         Modifier::new(40, 0, 2),
         Modifier::new(80, 0, 3),
     ];
-    let mut rings: Vec<_> = rings.into_iter().permutations(2).collect();
+    let mut rings: Vec<_> = rings.iter().permutations(2).collect();
     rings.sort_by_key(|r| r[0].cost + r[1].cost);
     println!("Rings: {:?}", rings);
     let mut min_cost = u16::MAX;
@@ -40,7 +40,7 @@ fn main() {
             for rs in rings.iter() {
                 let (cost, result) = fight([*w, *a, *rs[0], *rs[1]]);
                 match result {
-                    Some(hp) => if cost < min_cost {
+                    Some(_) => if cost < min_cost {
                         min_cost = cost;
                     },
                     None => if cost >max_cost {

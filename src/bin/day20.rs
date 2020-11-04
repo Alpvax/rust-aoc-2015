@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 fn main() {
-    //println!("Part 1: {}", part1(29000000));
+    println!("Part 1: {}", part1(29000000));
     println!("Part 2: {}", part2(29000000));
 }
 
